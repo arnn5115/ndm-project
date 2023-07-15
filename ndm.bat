@@ -4,21 +4,23 @@
 ::General Syntax:
 ::ndm {help | web | js | cpp | ...comingsoon(py,java,etc)} [<arguments>]
 
+::Note:
+::Make sure you already set ENV named "CODE" with your development path as the value
+
 @echo off
 
 ::Check Langguage
-:lang
-if "%1"=="help" (
+if /i "%1"=="help" (
     goto :help
-) else if "%1"=="web" (
+) else if /i "%1"=="web" (
     goto :web-mode
-) else if "%1"=="js" (
+) else if /i "%1"=="js" (
     goto :js-mode
-) else if "%1"=="cpp" (
+) else if /i "%1"=="cpp" (
     goto :cpp-mode
-) else (
-    goto :synt-error
-)
+) 
+goto :synt-error
+
 
 ::Help & Docs
 :help
@@ -27,7 +29,7 @@ goto :end
 
 ::Web Mode
 :web-mode
-    echo web
+    web-mode %2
 goto :end
 
 ::Javascript Mode
@@ -40,6 +42,7 @@ goto :end
     echo cpp
 goto :end
 
+::Error Handling
 :synt-error
     echo Syntax Error!
     echo run "ndm help" for more information
@@ -47,3 +50,4 @@ goto :end
 
 ::End of Script, Need to be on the bottom
 :end
+pause
